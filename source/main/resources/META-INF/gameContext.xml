@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="properties"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:game.properties" />
+	</bean>
+
+	<bean id="board" class="com.zcia.boardgame.model.Board" >
+		<property name="id" value="${board.id}" />
+		<property name="name" value="${board.name}" />
+		<property name="version" value="${board.version}" />
+		<property name="size" ref="size" />
+		<property name="background" ref="background" />
+	</bean>
+
+	<bean id="size" class="com.zcia.boardgame.model.BoardSize" > 
+		<property name="height" value="${board.size.height}" />
+		<property name="width" value="${board.size.width}" />
+	</bean>
+
+	<bean id="background" class="com.zcia.boardgame.model.Resource" >
+		<property name="name" value="${board.background.name}" />
+		<property name="uri" value="${board.background.uri}" />
+	</bean>
+
+	<bean name="item" class="com.zcia.boardgame.model.Item">
+		<property name="id" value="${item.id}" />
+		<property name="name" value="${item.name}" />
+		<property name="x" value="${item.x}" />
+		<property name="y" value="${item.y}" />
+		<property name="visible" value="${item.visible}" />
+		<property name="enable" value="${item.enable}" />
+	</bean>
+</beans>
